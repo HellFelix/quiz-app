@@ -8,11 +8,11 @@ This is an app that runs with [tauri](https://tauri.app/) using npm. Provided yo
 ### Setup
 To run the app, clone this repository  
 ```
-git clone git@github.com:HellFelix/quizlet-clone.git
+git clone git@github.com:HellFelix/quiz-app.git
 ```
 navigate to the directory 
 ```
-cd quizlet-clone
+cd quiz-app
 ```
 install node modules
 ```
