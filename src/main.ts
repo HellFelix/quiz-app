@@ -11,6 +11,7 @@ const body = document.body;
 const termDisplay = document.createElement("h1");
 const answerInput = document.createElement("input");
 answerInput.type = "text";
+answerInput.autocomplete = "off";
 
 const answerReport = document.createElement("h2");
 const playAgainButton = document.createElement("div");
@@ -21,13 +22,16 @@ playAgainButton.appendChild(playAgainText);
 
 let urlInput: HTMLInputElement | null;
 let urlSelectButton: HTMLElement | null;
+let urlSelectReversedButton: HTMLElement | null;
 let terms: String[] = [];
 let answers: String[] = [];
 
 window.addEventListener("DOMContentLoaded", () => {
   urlInput = document.querySelector("#url-input");
   urlSelectButton = document.querySelector("#enter-button");
+  urlSelectReversedButton = document.querySelector("#enter-reverse-button");
   urlSelectButton?.addEventListener('click', () => initQuiz());
+  urlSelectReversedButton?.addEventListener('click', () => initQuizReversed());
 });
 
 async function initQuiz() {
@@ -36,7 +40,18 @@ async function initQuiz() {
   answers = vocab[1];
   body.removeChild(urlInput);
   body.removeChild(urlSelectButton);
+  body.removeChild(urlSelectReversedButton);
   enterQuiz();
+}
+
+async function initQuizReversed() {
+  const vocab = await getVocab(urlInput?.value);
+  answers = vocab[0];
+  terms = vocab[1];
+  body.removeChild(urlInput);
+  body.removeChild(urlSelectButton);
+  body.removeChild(urlSelectReversedButton);
+  enterQuiz()
 }
 
 async function enterQuiz() {
